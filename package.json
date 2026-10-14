@@ -19,6 +19,7 @@
     "as400"
   ],
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/src/index.d.ts",
   "scripts": {
     "webpack": "webpack --mode production --config ./webpack.config.js",
