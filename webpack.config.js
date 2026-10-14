@@ -13,7 +13,7 @@ const webpack = require(`webpack`);
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
 /**@type WebpackConfig*/
-module.exports = {
+const config = {
   mode: `none`, // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
   target: `node`, // extensions run in a node context
   node: {
@@ -48,4 +48,22 @@ module.exports = {
   },
   // yes, really source maps
   devtool: `source-map`
-}; 
+};
+
+module.exports = [
+  config,
+  {
+    ...config,
+    experiments: {
+      outputModule: true
+    },
+    output: {
+      ...config.output,
+      filename: path.join(`index.mjs`),
+      module: true,
+      library: {
+        type: `module`
+      }
+    }
+  }
+];
